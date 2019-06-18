@@ -2,10 +2,7 @@
 #include <glib.h>
 
 
-static gboolean
-bus_call (GstBus     *bus,
-          GstMessage *msg,
-          gpointer    data)
+static gboolean bus_call (GstBus     *bus,GstMessage *msg,gpointer    data)
 {
   GMainLoop *loop = (GMainLoop *) data;
 
@@ -37,10 +34,7 @@ bus_call (GstBus     *bus,
 }
 
 
-static void
-on_pad_added (GstElement *element,
-              GstPad     *pad,
-              gpointer    data)
+static void on_pad_added (GstElement *element,GstPad     *pad,gpointer    data)
 {
   GstPad *sinkpad;
   GstElement *decoder = (GstElement *) data;
@@ -57,9 +51,7 @@ on_pad_added (GstElement *element,
 
 
 
-int
-main (int   argc,
-      char *argv[])
+int main (int   argc,char *argv[])
 {
   GMainLoop *loop;
 
@@ -74,7 +66,8 @@ main (int   argc,
 
 
   /* Check input arguments */
-  if (argc != 2) {
+  if (argc != 2) 
+  {
     g_printerr ("Usage: %s <Ogg/Vorbis filename>\n", argv[0]);
     return -1;
   }
@@ -88,7 +81,8 @@ main (int   argc,
   conv     = gst_element_factory_make ("audioconvert",  "converter");
   sink     = gst_element_factory_make ("autoaudiosink", "audio-output");
 
-  if (!pipeline || !source || !demuxer || !decoder || !conv || !sink) {
+  if (!pipeline || !source || !demuxer || !decoder || !conv || !sink) 
+  {
     g_printerr ("One element could not be created. Exiting.\n");
     return -1;
   }
@@ -105,8 +99,7 @@ main (int   argc,
 
   /* we add all elements into the pipeline */
   /* file-source | ogg-demuxer | vorbis-decoder | converter | alsa-output */
-  gst_bin_add_many (GST_BIN (pipeline),
-                    source, demuxer, decoder, conv, sink, NULL);
+  gst_bin_add_many (GST_BIN (pipeline),source, demuxer, decoder, conv, sink, NULL);
 
   /* we link the elements together */
   /* file-source -> ogg-demuxer ~> vorbis-decoder -> converter -> alsa-output */
