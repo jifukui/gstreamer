@@ -1,4 +1,4 @@
-#include<gst/gst.h>
+#include<gstreamer-1.0/gst/gst.h>
 int main(int argc,char **argv)
 {
     GstElement *pipeline=NULL;
