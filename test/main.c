@@ -4,7 +4,7 @@ int main(int argc,char **argv)
     GstElement *pipeline=NULL;
     GstBus *bus=NULL;
     GstMessage *msg=NULL;
-    gst_init(&argc,argv);
+    gst_init(&argc,&argv);
     pipeline=gst_parse_launch("playbin2 uri=http://docs.gstreamer.com/media/sintel_tariler-480p.webm",NULL);
     gst_element_set_state(pipeline,GST_STATE_PLAYING);
     bus=gst_element_get_bus(pipeline);
